@@ -36,7 +36,7 @@ using text_t = std::string;
 
 int main() {
     // Using the alias pairs_t
-    pairs_t pairs = {{"a", 1}, {"b", 2}};
+
     // Using the alias text_t
     text_t fmsg = "First key: ";
     text_t emsg = ", First value: ";
