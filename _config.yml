@@ -12,3 +12,8 @@ kramdown:
   theme: minima
   plugins: 
     -jekyll-feed
+
+collections:
+  tutorials:
+    output: true
+    permalink: /tutorials/:path/

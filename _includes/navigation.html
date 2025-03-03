@@ -4,6 +4,9 @@
       <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
       <a href="/blog/" {% if page.url == "/blog/" %}class="active"{% endif %}>Blog</a>
       <a href="/about/" {% if page.url == "/about/" %}class="active"{% endif %}>About</a>
+
+      <a href="/tutorials/" {% if page.url contains "/tutorials/" %}class="active"{% endif %}>Tutorials</a>
+
     </div>
   </nav>
   
