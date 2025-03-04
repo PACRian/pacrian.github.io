@@ -21,7 +21,7 @@ The `cmath` library in C++ provides a variety of mathematical functions that are
 
 `std::max` and `std::min`, these functions are used to find the maximum and minimum values between two numbers.Below is a simple [example]().
 
-```c++
+```cpp
 #include <iostream>
 
 int main() {
@@ -43,7 +43,7 @@ int main() {
 
 This function computes the square root of a number (`float` type). It is used in both [sqrt.cpp](vscode-file://vscode-app/d:/Programs/VScode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) and [calcTriangle.cpp](vscode-file://vscode-app/d:/Programs/VScode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) to calculate the square root of a given number. 
 
-```c++
+```cpp
 #include <iostream>
 #include <cmath> // Required for sqrt
 
@@ -64,7 +64,7 @@ int main() {
 
 This function raises a number to the power of another number. It is used in [calcTriangle.cpp](vscode-file://vscode-app/d:/Programs/VScode/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) to calculate the hypotenuse of a right-angled triangle using the Pythagorean theorem.
 
-```c++
+```cpp
 #include <iostream>
 #include <cmath> // Required for pow and sqrt
 
