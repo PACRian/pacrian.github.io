@@ -28,20 +28,35 @@
     .code-header.expanded::before {
       transform: rotate(90deg);
     }
-    
+
+    /* Code-content */
     .code-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 更平滑的过渡曲线 */
+      background-color: #f8f8f8; /* 增加背景色增强可视性 */
     }
-    
-    .code-content pre {
-      margin: 0;
+
+    .code-content.code-expanded {
+      max-height: 5000px; /* 设置足够大的最大高度 */
+      overflow: auto; /* 内容过长时显示滚动条 */
+      border: 1px solid #e1e4e8; /* 展开时增加边框 */
+      border-top: none;
       border-radius: 0 0 6px 6px;
     }
-    
-    .code-expanded .code-content {
-      max-height: 1000px; /* 根据实际内容调整 */
+
+    /* 优化代码块内部样式 */
+    .code-content pre {
+      padding: 1rem;
+      margin: 0;
+      background: transparent !important; /* 防止语法高亮背景覆盖 */
     }
+
+    .code-content code {
+      display: block;
+      white-space: pre-wrap; /* 允许代码换行 */
+      word-break: break-all;
+    }
+
     </style>
     

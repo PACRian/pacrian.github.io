@@ -256,10 +256,13 @@
   <div class="article-content">
     {{ content }}
   </div>
-
+  {% include footer.html %} <!-- 包含脚本和页脚 -->
+  
   <div class="article-footer">
     <p>© {{ site.time | date: '%Y' }} {{ site.title }} • All rights reserved</p>
   </div>
-  {% include footer.html %} <!-- 包含脚本和页脚 -->
+  
 </body>
 </html>
+
+
