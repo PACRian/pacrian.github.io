@@ -38,5 +38,10 @@ kramdown:
       line_numbers: false
       start_line: 1
 
+# SCSS
+sass:
+  sass_dir: _sass
+  style: compressed
+
 
 
