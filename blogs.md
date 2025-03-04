@@ -171,33 +171,16 @@ title: Blog - Pacria's Site
 
 {% include navigation.html %}
 
-<div class="blog-container">
-  <!-- Chronological blog posts section -->
-  <header class="blog-header">
-    <h1 class="blog-title">Blog</h1>
-  </header>
-
-  {% assign all_posts = site.tutorials | sort: 'date' | reverse %}
-  {% for post in all_posts limit:5 %}
-  <div class="post-entry">
-    <div class="post-date">{{ post.date | date: "%b %d, %Y" }}</div>
-    <h2 class="post-title">
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </h2>
-    <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-  </div>
-  {% endfor %}
+<!-- Divider between chronological and categories sections -->
+  <!-- <div class="section-divider"></div> -->
   
-  <!-- Divider between chronological and categories sections -->
-  <div class="section-divider"></div>
-  
-  <!-- Categories section -->
-  <div class="categories-section">
-    <h2 class="categories-title">Categories</h2>
+<!-- Categories section -->
+<div class="categories-section">
+    <!-- <h2 class="categories-title">Categories</h2> -->
     
-    {% assign categories = site.tutorials | map: "categories" | flatten | uniq %}
-    {% for category in categories %}
-    <div class="category">
+{% assign categories = site.tutorials | map: "categories" | flatten | uniq %}
+{% for category in categories %}
+  <div class="category">
       <div class="category-header" onclick="toggleCategory(this)">
         {{ category }}
       </div>
@@ -225,6 +208,25 @@ title: Blog - Pacria's Site
     {% endfor %}
   </div>
 </div>
+
+
+<div class="blog-container">
+  <!-- Chronological blog posts section -->
+  <header class="blog-header">
+    <!-- <h1 class="blog-title">Blog</h1> -->
+  </header>
+
+{% assign all_posts = site.tutorials | sort: 'date' | reverse %}
+{% for post in all_posts limit:5 %}
+<div class="post-entry">
+  <div class="post-date">{{ post.date | date: "%b %d, %Y" }}</div>
+  <h2 class="post-title">
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </h2>
+  <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+</div>
+{% endfor %}
+
 
 <script>
   function toggleCategory(element) {
