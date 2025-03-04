@@ -4,6 +4,7 @@ title: "Arithmetic operations in C++"
 date: 2025-03-01
 categories: ["C++ tutorials"]
 tags: ["C++", "arithmtic", "data types"]
+excerpt: "Basic operations like `min` and `max` functions"
 ---
 
 # Arithmetic

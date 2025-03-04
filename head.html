@@ -1,0 +1,47 @@
+<!-- _includes/head.html 添加样式 -->
+<style>
+    .code-collapse {
+      position: relative;
+      margin: 1rem 0;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+    }
+    
+    .code-header {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      background-color: #f6f8fa;
+      border-bottom: 1px solid #e1e4e8;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .code-header::before {
+      content: '▶';
+      display: inline-block;
+      margin-right: 8px;
+      transition: transform 0.2s;
+      color: #6a737d;
+    }
+    
+    .code-header.expanded::before {
+      transform: rotate(90deg);
+    }
+    
+    .code-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .code-content pre {
+      margin: 0;
+      border-radius: 0 0 6px 6px;
+    }
+    
+    .code-expanded .code-content {
+      max-height: 1000px; /* 根据实际内容调整 */
+    }
+    </style>
+    

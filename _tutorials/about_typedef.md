@@ -1,14 +1,22 @@
 ---
 layout: post
-title: "About `typedef`"
+title: "Use `typedef` in C++"
 date: 2025-03-04
 categories: ["C++ tutorials"]
 tags: ["C++", "Input/Output", "User Input"]
+excerpt: "The `typedef` keyword —— alias for an existing data type."
 ---
 
 
+<!-- 在header添加操作按钮 -->
+<div class="code-header">
+  <span class="lang-label">Python</span>
+  <div class="code-actions">
+    <button class="copy-btn" title="Copy code">⎘</button>
+    <button class="expand-all" title="Expand all">↕</button>
+  </div>
+</div>
 
-# `typedef`
 
 ## Brief 
 

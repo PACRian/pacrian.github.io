@@ -4,6 +4,7 @@ title: "If-else in C++"
 date: 2025-03-04
 categories: ["C++ tutorials"]
 tags: ["C++", "if-else", "conditional statements"]
+excerpt: "'If-else' —— Conditional statements"
 ---
 
 # If-Else

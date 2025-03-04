@@ -5,9 +5,8 @@ date: 2025-03-04
 categories: ["C++ tutorials"]
 tags: ["C++", "type conversion"]
 image: /assets/img/type-conversion.png
+excerpt: "Would you like to try the implicit or explicit type conversion"
 ---
-
-# Type conversion
 
 ## Brief
 

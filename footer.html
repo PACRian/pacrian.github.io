@@ -1,0 +1,45 @@
+<!-- _includes/footer.html 添加样式 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 自动包装代码块
+  document.querySelectorAll('pre > code').forEach(function(codeBlock) {
+    const pre = codeBlock.parentElement;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-collapse';
+    
+    const header = document.createElement('div');
+    header.className = 'code-header';
+    header.innerHTML = `<span>${getCodeLanguage(codeBlock)}</span>`;
+    
+    const content = document.createElement('div');
+    content.className = 'code-content';
+    
+    wrapper.appendChild(header);
+    content.appendChild(pre.cloneNode(true));
+    wrapper.appendChild(content);
+    
+    pre.parentNode.replaceChild(wrapper, pre);
+    
+    // 添加交互
+    header.addEventListener('click', function() {
+      this.classList.toggle('expanded');
+      content.classList.toggle('code-expanded');
+      
+      // 持久化状态
+      const state = this.classList.contains('expanded');
+      localStorage.setItem(`codeState_${codeBlock.id}`, state);
+    });
+    
+    // 恢复状态
+    const savedState = localStorage.getItem(`codeState_${codeBlock.id}`);
+    if (savedState === 'true') {
+      header.classList.add('expanded');
+      content.classList.add('code-expanded');
+    }
+  });
+
+  function getCodeLanguage(codeElement) {
+    return codeElement.className.match(/language-(\w+)/)?.[1] || 'Code';
+  }
+});
+</script>
