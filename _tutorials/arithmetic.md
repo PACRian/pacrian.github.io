@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Arithmetic operations in C++"
+date: 2025-03-01
+categories: ["C++ tutorials"]
+tags: ["C++", "arithmtic", "data types"]
+---
+
 # Arithmetic
 
 

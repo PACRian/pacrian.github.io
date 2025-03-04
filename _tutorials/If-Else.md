@@ -1,7 +1,9 @@
 ---
-title: "If-Else 基础入门"
-date: 2024-03-01
-layout: tutorial
+layout: post
+title: "If-else in C++"
+date: 2025-03-04
+categories: ["C++ tutorials"]
+tags: ["C++", "if-else", "conditional statements"]
 ---
 
 # If-Else

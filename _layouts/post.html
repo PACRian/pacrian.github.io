@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <style>
+    /* Vintage-inspired style similar to Typora Vintage theme */
+    body {
+      font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+      line-height: 1.6;
+      color: #333;
+      background: #fafaf8;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Navigation */
+    .navigation {
+      text-align: center;
+      padding: 20px 0;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #e0ded9;
+    }
+    .navigation a {
+      margin: 0 30px;
+      text-decoration: none;
+      color: #555;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+    .navigation a:hover {
+      color: #9b6e2e;
+    }
+    
+    /* Article Header */
+    .article-header {
+      margin-bottom: 40px;
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e0ded9;
+    }
+    .article-title {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #3e3e3e;
+      font-weight: normal;
+    }
+    .article-meta {
+      color: #777;
+      font-size: 15px;
+      font-style: italic;
+    }
+    
+    /* Tags */
+    .tag {
+      display: inline-block;
+      background-color: #f3f1ea;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-right: 5px;
+      font-size: 12px;
+      color: #777;
+      font-style: normal;
+    }
+    
+    /* Article Content */
+    .article-content {
+      line-height: 1.8;
+    }
+    
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+      color: #3e3e3e;
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      font-weight: normal;
+    }
+    h1 {
+      font-size: 2em;
+      border-bottom: 1px solid #e0ded9;
+      padding-bottom: 0.3em;
+    }
+    h2 {
+      font-size: 1.65em;
+    }
+    h3 {
+      font-size: 1.4em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    
+    /* Links */
+    a {
+      color: #8f674c;
+      text-decoration: none;
+      border-bottom: 1px dotted #d3cec7;
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+    a:hover {
+      color: #9b6e2e;
+      border-bottom: 1px solid #9b6e2e;
+    }
+    
+    /* Paragraphs */
+    p {
+      margin: 0 0 1.2em 0;
+    }
+    
+    /* Lists */
+    ul, ol {
+      margin: 0 0 1.2em 0;
+      padding-left: 2em;
+    }
+    li {
+      margin-bottom: 0.4em;
+    }
+    
+    /* Blockquotes */
+    blockquote {
+      margin: 1.5em 0;
+      padding: 0.8em 1.2em;
+      border-left: 4px solid #e0ded9;
+      background-color: #f9f8f5;
+      font-style: italic;
+      color: #555;
+    }
+    blockquote p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Code */
+    code {
+      font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+      background-color: #f5f3ee;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-size: 0.9em;
+      color: #693736;
+    }
+    
+    /* Code blocks */
+    pre {
+      background-color: #f5f3ee;
+      padding: 1.2em;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin: 1.5em 0;
+      border: 1px solid #e0ded9;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.9em;
+      color: #333;
+      line-height: 1.5;
+    }
+    
+    /* Tables */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5em 0;
+      border: 1px solid #e0ded9;
+    }
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
+      border: 1px solid #e0ded9;
+    }
+    th {
+      background-color: #f5f3ee;
+      font-weight: normal;
+    }
+    tr:nth-child(even) {
+      background-color: #fbfaf7;
+    }
+    
+    /* Horizontal rule */
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #e0ded9;
+      margin: 2em 0;
+    }
+    
+    /* Images */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1.5em auto;
+      border: 1px solid #e0ded9;
+      padding: 5px;
+      background-color: #fff;
+    }
+    
+    /* Image captions */
+    img + em {
+      display: block;
+      text-align: center;
+      font-size: 0.9em;
+      color: #777;
+      margin-top: -1em;
+    }
+    
+    /* Footer */
+    .article-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e0ded9;
+      color: #777;
+      font-size: 14px;
+      text-align: center;
+      font-style: italic;
+    }
+    
+    /* Print styles */
+    @media print {
+      body {
+        background: #fff;
+        font-size: 12pt;
+      }
+      .navigation {
+        display: none;
+      }
+      a {
+        color: #000;
+        border-bottom: none;
+      }
+      @page {
+        margin: 2cm;
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      .navigation a {
+        margin: 0 15px;
+        font-size: 16px;
+      }
+      .article-title {
+        font-size: 26px;
+      }
+      pre {
+        padding: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navigation">
+    <a href="{{ site.baseurl }}/">Home</a>
+    <a href="{{ site.baseurl }}/blogs.html">Blogs</a>
+    <a href="{{ site.baseurl }}/about.html">About</a>
+  </div>
+
+  <div class="article-header">
+    <h1 class="article-title">{{ page.title }}</h1>
+    <div class="article-meta">
+      Published on: {{ page.date | date: "%B %d, %Y" }}
+      {% if page.tags.size > 0 %}
+      <span class="tags">
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="article-content">
+    {{ content }}
+  </div>
+
+  <div class="article-footer">
+    <p>© {{ site.time | date: '%Y' }} {{ site.title }} • All rights reserved</p>
+  </div>
+</body>
+</html>

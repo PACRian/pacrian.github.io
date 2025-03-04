@@ -1,5 +1,5 @@
 # Site settings
-title: Pacria's Site
+title: 
 description: Personal website with tutorials and blog posts
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
