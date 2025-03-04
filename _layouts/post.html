@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include head.html %}  <!-- 包含全局样式和meta -->
   <title>{{ page.title }} - {{ site.title }}</title>
   <style>
     /* Vintage-inspired style similar to Typora Vintage theme */
@@ -259,5 +260,6 @@
   <div class="article-footer">
     <p>© {{ site.time | date: '%Y' }} {{ site.title }} • All rights reserved</p>
   </div>
+  {% include footer.html %} <!-- 包含脚本和页脚 -->
 </body>
 </html>
