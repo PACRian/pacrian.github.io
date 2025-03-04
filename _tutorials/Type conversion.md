@@ -1,3 +1,12 @@
+---
+layout: post
+title: "Use type conversion in C++"
+date: 2025-03-04
+categories: ["C++ tutorials"]
+tags: ["C++", "type conversion"]
+image: /assets/img/type-conversion.png
+---
+
 # Type conversion
 
 ## Brief
