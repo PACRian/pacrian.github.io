@@ -6,6 +6,7 @@ pre.highlight {
   border: 1px solid #e1e4e8; /* 展开时增加边框 */
   border-top: none;
   border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 pre.highlight .code-fold-btn {
@@ -34,7 +35,7 @@ pre.highlight.folded {
   overflow: hidden;
   background-color: rgba(30, 30, 30, 0.7) !important;
   border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   transition: all 0.3s ease;
 }

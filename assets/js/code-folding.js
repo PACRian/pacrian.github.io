@@ -44,7 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
           block.classList.add('folded');
           foldButton.textContent = '+';
           foldButton.title = 'Unfold code';
-          codeElement.innerHTML = firstLine + '\n...';
+          codeElement.innerHTML = firstLine;
+          // codeElement.innerHTML = firstLine + '\n...';
         }
       });
     });
