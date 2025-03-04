@@ -1,107 +1,102 @@
 ---
 layout: default
-title: Blogs - Pacria's Site
+title: Blog - Pacria's Site
 ---
 
 <style>
+  /* Navigation styling */
   .navigation {
     text-align: center;
-    padding: 20px 0;
-    font-family: Arial, sans-serif;
+    padding: 20px 0 30px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
   .navigation a {
-    margin: 0 30px;
+    margin: 0 20px;
     text-decoration: none;
     color: #333;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #333;
   }
-  .content {
+  
+  /* Main content */
+  .blog-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    padding: 0 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
-  .category {
-    margin-bottom: 20px;
+  
+  /* Blog header */
+  .blog-header {
+    margin: 60px 0 40px;
   }
-  .category-header {
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
+  .blog-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0;
+    color: #111;
+  }
+  
+  /* Post entries */
+  .post-entry {
+    margin-bottom: 60px;
+  }
+  .post-date {
+    font-size: 16px;
+    color: #555;
     margin-bottom: 10px;
   }
-  .category-header::before {
-    content: "> ";
+  .post-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 15px;
   }
-  .category-content {
-    margin-left: 20px;
-    display: none;
+  .post-title a {
+    color: #111;
+    text-decoration: none;
   }
-  .category.active .category-content {
-    display: block;
+  .post-title a:hover {
+    text-decoration: underline;
   }
-  .article-item {
-    margin-bottom: 10px;
-    list-style-type: none;
+  .post-excerpt {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+    margin: 0;
   }
-  .article-item::before {
-    content: "· ";
-  }
-  .article-date {
-    color: #666;
-    font-size: 14px;
-    margin-right: 10px;
-  }
-  .article-tags {
-    display: inline-block;
-    color: #888;
-    font-size: 12px;
-    margin-left: 10px;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .blog-title {
+      font-size: 36px;
+    }
+    .post-title {
+      font-size: 22px;
+    }
   }
 </style>
 
 <div class="navigation">
-  <a href="index.html">Home</a>
-  <a href="blogs.html">Blogs</a>
-  <a href="about.html">About</a>
+  <a href="{{ site.baseurl }}/">Home</a>
+  <a href="{{ site.baseurl }}/blog.html">Blog</a>
+  <a href="{{ site.baseurl }}/about.html">About</a>
 </div>
 
-<div class="content">
-  {% assign categories = site.tutorials | map: "categories" | flatten | uniq %}
-  {% for category in categories %}
-  <div class="category">
-    <div class="category-header" onclick="toggleCategory(this)">{{ category }}</div>
-    <div class="category-content">
-      <ul style="padding-left: 0;">
-        {% assign category_posts = site.tutorials | where_exp: "item", "item.categories contains category" %}
-        {% for post in category_posts %}
-        <li class="article-item">
-          <span class="article-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <span class="article-tags">
-            {% for tag in post.tags %}
-            <span class="tag">{{ tag }}</span>
-            {% endfor %}
-          </span>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
+<div class="blog-container">
+  <header class="blog-header">
+    <h1 class="blog-title">Blog</h1>
+  </header>
+
+  {% assign all_posts = site.tutorials | sort: 'date' | reverse %}
+  {% for post in all_posts %}
+  <div class="post-entry">
+    <div class="post-date">{{ post.date | date: "%b %d, %Y" }}</div>
+    <h2 class="post-title">
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
+    <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
   </div>
   {% endfor %}
 </div>
-
-<script>
-  function toggleCategory(element) {
-    const parentCategory = element.parentElement;
-    parentCategory.classList.toggle('active');
-  }
-  
-  // Open the first category by default
-  document.addEventListener('DOMContentLoaded', function() {
-    const firstCategory = document.querySelector('.category');
-    if (firstCategory) {
-      firstCategory.classList.add('active');
-    }
-  });
-</script>
