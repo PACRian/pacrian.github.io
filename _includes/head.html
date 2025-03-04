@@ -2,39 +2,62 @@
 <style>
     .code-collapse {
       position: relative;
-      margin: 1rem 0;
-      border: 1px solid #e1e4e8;
-      border-radius: 6px;
+      margin: 1.5rem 0;
+      background: rgba(30, 30, 30, 0.95); /* VS Code主背景色 */
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
     }
     
     .code-header {
       display: flex;
       align-items: center;
-      padding: 8px 12px;
-      background-color: #f6f8fa;
-      border-bottom: 1px solid #e1e4e8;
+      padding: 12px 16px;
+      background: rgba(60, 60, 60, 0.9); /* VS Code标题栏颜色 */
+      color: #d4d4d4; /* 文字颜色 */
+      font-family: 'Consolas', monospace;
       cursor: pointer;
       user-select: none;
+      transition: background 0.2s;
+    }
+
+    .code-header:hover {
+      background: rgba(90, 90, 90, 0.9);
     }
     
     .code-header::before {
       content: '▶';
-      display: inline-block;
-      margin-right: 8px;
+      font-size: 0.8em;
+      margin-right: 10px;
+      color: #858585;
       transition: transform 0.2s;
-      color: #6a737d;
     }
     
     .code-header.expanded::before {
       transform: rotate(90deg);
+      color: #3794ff; /* VS Code蓝色 */
     }
 
     /* Code-content */
     .code-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 更平滑的过渡曲线 */
-      background-color: #f8f8f8; /* 增加背景色增强可视性 */
+      transition: max-height 0.3s cubic-bezier(0.23, 1, 0.32, 1); /* 更平滑的过渡曲线 */
+    }
+
+    .code-content pre {
+      margin: 0;
+      padding: 16px;
+      background: rgba(30, 30, 30, 0.98) !important; /* 强制深色背景 */
+    }
+
+    .code-content code {
+      font-family: 'Consolas', monospace;
+      font-size: 0.9em;
+      line-height: 1.5;
+      color: #d4d4d4; /* 基础代码颜色 */
+      background: transparent !important;
     }
 
     .code-content.code-expanded {
@@ -45,18 +68,12 @@
       border-radius: 0 0 6px 6px;
     }
 
-    /* 优化代码块内部样式 */
-    .code-content pre {
-      padding: 1rem;
-      margin: 0;
-      background: transparent !important; /* 防止语法高亮背景覆盖 */
-    }
-
-    .code-content code {
-      display: block;
-      white-space: pre-wrap; /* 允许代码换行 */
-      word-break: break-all;
-    }
-
+    /* VS Code语法高亮配色 */
+    .code-content .keyword { color: #569cd6; }       /* 关键字 */
+    .code-content .function { color: #dcdcaa; }     /* 函数 */
+    .code-content .string { color: #ce9178; }       /* 字符串 */
+    .code-content .comment { color: #6a9955; }      /* 注释 */
+    .code-content .number { color: #b5cea8; }       /* 数字 */
+    .code-content .class-name { color: #4ec9b0; }   /* 类名 */
     </style>
     
