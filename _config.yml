@@ -23,14 +23,11 @@ defaults:
       layout: post
 
 # kramdown -- add code collapse snipets
+markdown: kramdown
+highlighter: rouge
 kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    default_lang: text
-    css_class: prism-vscode
-    span:
-      line_numbers: false
     block:
-      line_numbers: false
-      start_line: 1
+      line_numbers: true
 

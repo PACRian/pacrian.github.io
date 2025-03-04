@@ -1,0 +1,60 @@
+/* Syntax Highlighting for Code Blocks */
+/* Use Monokai or One Dark Pro theme similar to VSCode Dark+ */
+pre, code {
+    font-family: 'Cascadia Code', 'Fira Code', Consolas, 'Courier New', monospace;
+    font-size: 14px;
+}
+
+/* Code block styling (for ```language marked blocks) */
+pre {
+    background-color: #1E1E1E !important; /* VSCode Dark+ background */
+    color: #D4D4D4; /* Light text color */
+    border-radius: 4px;
+    padding: 15px;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* Inline code styling (for `single backtick` code) */
+:not(pre) > code {
+    background-color: #f0f0f0; /* Light background for inline code */
+    color: #333;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Syntax Highlighting Colors */
+pre .keyword { color: #569CD6; } /* Blue for keywords */
+pre .string { color: #CE9178; } /* Orange/Salmon for strings */
+pre .comment { color: #6A9955; } /* Green for comments */
+pre .function { color: #DCDCAA; } /* Yellowish for functions */
+pre .number { color: #B5CEA8; } /* Light green for numbers */
+
+/* Code Folding Enhancements */
+.code-folding-container {
+    position: relative;
+    background: rgba(30, 30, 30, 0.7); /* Semi-transparent dark background */
+}
+
+.code-folding-container::before {
+    content: attr(data-first-line);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    color: #D4D4D4;
+    opacity: 0.7;
+}
+
+/* Language Identification Badge */
+.language-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(50, 50, 50, 0.7);
+    color: #D4D4D4;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8em;
+}
