@@ -1,37 +1,28 @@
-<!-- _includes/navigation.html -->
-<nav class="navbar">
-    <div class="container">
-      <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
-      <a href="/blog/" {% if page.url == "/blog/" %}class="active"{% endif %}>Blog</a>
-      <a href="/about/" {% if page.url == "/about/" %}class="active"{% endif %}>About</a>
-
-      <a href="/tutorials/" {% if page.url contains "/tutorials/" %}class="active"{% endif %}>Tutorials</a>
-
-    </div>
-  </nav>
-  
-  <style>
-  .navbar {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-bottom: 1px solid #dee2e6;
+<!-- Navigation Component -->
+<style>
+  /* Navigation styling */
+  .navigation {
+    text-align: center;
+    padding: 20px 0 30px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
-  
-  .navbar a {
-    color: #333;
+  .navigation a {
+    margin: 0 20px;
     text-decoration: none;
-    margin-right: 1.5rem;
-    padding: 0.5rem;
-  }
-  
-  .navbar a.active {
-    border-bottom: 2px solid #0366d6;
+    color: #333;
+    font-size: 16px;
     font-weight: 500;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #333;
   }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
+  .navigation a.active {
+    font-weight: 600;
+    border-bottom: 2px solid #333;
   }
-  </style>
-  
+</style>
+
+<div class="navigation">
+  <a href="{{ site.baseurl }}/" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
+  <a href="{{ site.baseurl }}/blogs.html" {% if page.url contains '/blogs' %}class="active"{% endif %}>Blog</a>
+  <a href="{{ site.baseurl }}/about.html" {% if page.url contains '/about' %}class="active"{% endif %}>About</a>
+</div>

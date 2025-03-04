@@ -4,22 +4,6 @@ title: Blog - Pacria's Site
 ---
 
 <style>
-  /* Navigation styling */
-  .navigation {
-    text-align: center;
-    padding: 20px 0 30px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  }
-  .navigation a {
-    margin: 0 20px;
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    font-weight: 500;
-    padding-bottom: 2px;
-    border-bottom: 1px solid #333;
-  }
-  
   /* Main content */
   .blog-container {
     max-width: 800px;
@@ -78,11 +62,7 @@ title: Blog - Pacria's Site
   }
 </style>
 
-<div class="navigation">
-  <a href="{{ site.baseurl }}/">Home</a>
-  <a href="{{ site.baseurl }}/blog.html">Blog</a>
-  <a href="{{ site.baseurl }}/about.html">About</a>
-</div>
+{% include navigation.html %}
 
 <div class="blog-container">
   <header class="blog-header">

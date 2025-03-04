@@ -16,25 +16,6 @@
       padding: 20px;
     }
     
-    /* Navigation */
-    .navigation {
-      text-align: center;
-      padding: 20px 0;
-      margin-bottom: 40px;
-      border-bottom: 1px solid #e0ded9;
-    }
-    .navigation a {
-      margin: 0 30px;
-      text-decoration: none;
-      color: #555;
-      font-size: 18px;
-      letter-spacing: 0.5px;
-      transition: color 0.3s;
-    }
-    .navigation a:hover {
-      color: #9b6e2e;
-    }
-    
     /* Article Header */
     .article-header {
       margin-bottom: 40px;
@@ -255,11 +236,7 @@
   </style>
 </head>
 <body>
-  <div class="navigation">
-    <a href="{{ site.baseurl }}/">Home</a>
-    <a href="{{ site.baseurl }}/blogs.html">Blogs</a>
-    <a href="{{ site.baseurl }}/about.html">About</a>
-  </div>
+  {% include navigation.html %}
 
   <div class="article-header">
     <h1 class="article-title">{{ page.title }}</h1>
