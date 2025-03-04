@@ -1,50 +1,61 @@
-/* Syntax Highlighting for Code Blocks */
-/* Use Monokai or One Dark Pro theme similar to VSCode Dark+ */
-pre, code {
-    font-family: 'Cascadia Code', 'Fira Code', Consolas, 'Courier New', monospace;
-    font-size: 14px;
-}
-
-/* Code block styling (for ```language marked blocks) */
-pre {
-    background-color: #1E1E1E !important; /* VSCode Dark+ background */
-    color: #D4D4D4; /* Light text color */
+/* Code Block Styling */
+.code-block-container {
+    position: relative;
+    background-color: #1E1E1E; /* Dark background similar to VSCode */
     border-radius: 4px;
-    padding: 15px;
-    overflow-x: auto;
-    position: relative;
+    overflow: hidden;
 }
 
-/* Inline code styling (for `single backtick` code) */
-:not(pre) > code {
-    background-color: #f0f0f0; /* Light background for inline code */
-    color: #333;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-size: 0.9em;
-}
-
-/* Syntax Highlighting Colors */
-pre .keyword { color: #569CD6; } /* Blue for keywords */
-pre .string { color: #CE9178; } /* Orange/Salmon for strings */
-pre .comment { color: #6A9955; } /* Green for comments */
-pre .function { color: #DCDCAA; } /* Yellowish for functions */
-pre .number { color: #B5CEA8; } /* Light green for numbers */
-
-/* Code Folding Enhancements */
-.code-folding-container {
-    position: relative;
-    background: rgba(30, 30, 30, 0.7); /* Semi-transparent dark background */
-}
-
-.code-folding-container::before {
-    content: attr(data-first-line);
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 5px;
+.code-block-header {
+    background-color: #252526;
     color: #D4D4D4;
-    opacity: 0.7;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.code-block-content {
+    transition: max-height 0.3s ease;
+    max-height: 1000px; /* Large default max-height */
+    overflow: hidden;
+}
+
+.code-block-content.collapsed {
+    max-height: 0;
+}
+
+.toggle-icon {
+    width: 15px;
+    height: 15px;
+    position: relative;
+}
+
+.toggle-icon::before,
+.toggle-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #D4D4D4;
+    transition: transform 0.2s ease;
+}
+
+.toggle-icon::before {
+    width: 15px;
+    height: 2px;
+    top: 6px;
+    left: 0;
+}
+
+.toggle-icon::after {
+    width: 2px;
+    height: 15px;
+    top: 0;
+    left: 6px;
+}
+
+.collapsed .toggle-icon::after {
+    transform: rotate(90deg);
 }
 
 /* Language Identification Badge */

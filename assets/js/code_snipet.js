@@ -1,41 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Language Identification and Badge
-    const codeBlocks = document.querySelectorAll('pre code');
+    // Find all pre elements that should be foldable
+    const codeBlocks = document.querySelectorAll('pre');
+    
     codeBlocks.forEach(block => {
-        // Detect language
-        const languageClass = Array.from(block.classList)
-            .find(cls => cls.startsWith('language-'));
-        
-        const language = languageClass 
-            ? languageClass.replace('language-', '').toUpperCase() 
-            : 'PLAIN TEXT';
-        
-        // Create language badge
-        const badge = document.createElement('span');
-        badge.classList.add('language-badge');
-        badge.textContent = language;
-        
-        // Add badge to parent pre element
-        const preBlock = block.closest('pre');
-        if (preBlock) {
-            preBlock.style.position = 'relative';
-            preBlock.appendChild(badge);
-        }
-    });
-
-    // Code Folding Enhancement
-    const foldableBlocks = document.querySelectorAll('pre');
-    foldableBlocks.forEach(block => {
-        // Capture first line for display
-        const firstLine = block.textContent.split('\n')[0];
-        
-        // Create folding container
+        // Wrap the pre block in a container
         const container = document.createElement('div');
-        container.classList.add('code-folding-container');
-        container.setAttribute('data-first-line', firstLine);
-        
-        // Wrap the block
+        container.classList.add('code-block-container');
         block.parentNode.insertBefore(container, block);
+        
+        // Create header
+        const header = document.createElement('div');
+        header.classList.add('code-block-header');
+        
+        // Create first line display
+        const firstLine = block.textContent.split('\n')[0];
+        const lineDisplay = document.createElement('span');
+        lineDisplay.textContent = firstLine;
+        
+        // Create toggle icon
+        const toggleIcon = document.createElement('div');
+        toggleIcon.classList.add('toggle-icon');
+        
+        header.appendChild(lineDisplay);
+        header.appendChild(toggleIcon);
+        
+        // Wrap pre block
+        container.appendChild(header);
         container.appendChild(block);
+        
+        // Add click event to header
+        header.addEventListener('click', () => {
+            block.classList.toggle('collapsed');
+            container.classList.toggle('collapsed');
+        });
     });
 });
