@@ -13,7 +13,18 @@ kramdown:
   plugins: 
     -jekyll-feed
 
+# Add tutorials to your site
 collections:
   tutorials:
     output: true
-    permalink: /tutorials/
+    permalink: /tutorials/:path/
+    sort_by: date
+    order: descending
+
+defaults:
+  - scope:
+      path: "_tutorials"
+      type: "tutorials"
+    values:
+      layout: "tutorial"
+      author: "PACRian"
