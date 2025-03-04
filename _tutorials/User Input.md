@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Process User's input in C++"
+date: 2025-03-04
+categories: ["C++ tutorials"]
+tags: ["C++", "Input/Output", "User Input"]
+---
+
 # User Input
 
 ## Brief
