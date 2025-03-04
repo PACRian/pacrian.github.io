@@ -1,4 +1,7 @@
 <!-- _includes/head.html 添加样式 -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+<!-- custom Prism.js -->
 <style>
     .code-collapse {
       position: relative;
@@ -69,11 +72,24 @@
     }
 
     /* VS Code语法高亮配色 */
-    .code-content .keyword { color: #569cd6; }       /* 关键字 */
-    .code-content .function { color: #dcdcaa; }     /* 函数 */
-    .code-content .string { color: #ce9178; }       /* 字符串 */
-    .code-content .comment { color: #6a9955; }      /* 注释 */
-    .code-content .number { color: #b5cea8; }       /* 数字 */
-    .code-content .class-name { color: #4ec9b0; }   /* 类名 */
+    .prism-vscode code[class*="language-"],
+    .prism-vscode pre[class*="language-"] {
+      --vscode-blue: #569cd6;
+      --vscode-green: #6a9955;
+      --vscode-orange: #ce9178;
+      --vscode-purple: #c586c0;
+      
+      background: #1e1e1e;
+      color: #d4d4d4;
+      text-shadow: none;
+    }
+
+    .token.keyword { color: var(--vscode-blue); }
+    .token.string { color: var(--vscode-orange); }
+    .token.comment { color: var(--vscode-green); }
+    .token.function { color: #dcdcaa; }
+    .token.class-name { color: #4ec9b0; }
+    .token.operator { color: #d4d4d4; }
+    .token.punctuation { color: #d4d4d4; }
     </style>
     
