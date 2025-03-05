@@ -6,9 +6,6 @@ categories: ["C++ tutorials"]
 tags: ["C++", "test"]
 excerpt: "TEST"
 lang: zh
-translations:
-  - lang: en
-    url: /tutorials/test_page.html
 ---
 
 ## 下面是一个简单的cpp程序
