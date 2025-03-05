@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "TEST PAGE"
-date: 2025-03-04
+title: "测试页面"
+date: 2025-03-06
 categories: ["C++ tutorials"]
 tags: ["C++", "test"]
 excerpt: "TEST"
-lang: en
+lang: zh
 translations:
-  - lang: zh
-    url: /test_page_zh.html
+  - lang: en
+    url: /test_page.html
 ---
 
-## Below is a test cpp file
+## 下面是一个简单的cpp程序
 ```cpp
 int main() {
     // Your C++ code here

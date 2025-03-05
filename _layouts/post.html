@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" data-default-lang="en">
+<html data-default-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% include head.html %}  <!-- 包含全局样式和meta -->
   <title>{{ page.title }} - {{ site.title }}</title>
+
+  <!-- Language alternate links for SEO -->
+  {% if page.translations %}
+    {% for translation in page.translations %}
+      <link rel="alternate" hreflang="{{ translation.lang }}" href="{{ translation.url | absolute_url }}" />
+    {% endfor %}
+  {% endif %}
+
+  <!-- Don't forget to add the current page's language -->
+  <link rel="alternate" hreflang="{{ page.lang | default: 'en' }}" href="{{ page.url | absolute_url }}" />
+
   <style>
     /* Vintage-inspired style similar to Typora Vintage theme */
     body {
