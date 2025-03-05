@@ -6,6 +6,7 @@ categories: ["C++ tutorials"]
 tags: ["C++", "test"]
 excerpt: "TEST"
 lang: zh
+permalink: /tutorials/test_page_zh/
 ---
 
 ## 下面是一个简单的cpp程序
