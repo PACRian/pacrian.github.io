@@ -38,8 +38,6 @@ kramdown:
       line_numbers: false
       start_line: 1
 
-# Permalink settings
-permalink: /:categories/:title/
 
 
 
