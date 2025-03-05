@@ -8,7 +8,7 @@ excerpt: "TEST"
 lang: en
 translations:
   - lang: zh
-    url: /test_page_zh.html
+    url: /tutorials/test_page_zh.html
 ---
 
 ## Below is a test cpp file
