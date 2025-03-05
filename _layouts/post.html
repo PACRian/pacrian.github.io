@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-default-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -235,6 +235,15 @@
       }
     }
   </style>
+
+  <!-- Language toggle: 语言切换按钮 -->
+  <div class="language-switch">
+    <button id="lang-toggle" class="lang-btn" onclick="toggleLanguage()">
+      <span class="lang-text" data-lang="en">中文</span>
+      <span class="lang-text" data-lang="zh">English</span>
+    </button>
+  </div>
+
 </head>
 <body>
   {% include navigation.html %}
