@@ -1,11 +1,16 @@
 ---
 layout: post
-title: "测试页面"
-date: 2025-03-06
+title: 测试页面
+date: 2025-03-04
 categories: ["C++ tutorials"]
 tags: ["C++", "test"]
 excerpt: "TEST"
 lang: zh
+translations: 
+  - lang: en
+    url: /tutorials/test_page/
+  - lang: zh
+    url: /tutorials/test_page_zh/
 ---
 
 ## 下面是一个简单的cpp程序

@@ -6,6 +6,12 @@ categories: ["C++ tutorials"]
 tags: ["C++", "type conversion"]
 image: /assets/img/type-conversion.png
 excerpt: "Would you like to try the implicit or explicit type conversion"
+lang: en
+translations:
+  - lang: zh
+    url: /tutorials/Type%20conversion_zh/
+  - lang: en
+    url: /tutorials/Type%20conversion/
 ---
 
 ## Brief

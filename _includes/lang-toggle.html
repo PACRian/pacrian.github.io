@@ -1,0 +1,47 @@
+
+<div class="language-toggle" id="languageToggle">
+    <div class="language-toggle-slider"></div>
+    <div class="language-toggle-label">
+        <span>English</span>
+        <span>----</span>
+        <span>中文</span>
+    </div>
+</div>
+
+<script type="application/json" id="page-translations">
+    {{ page.translations | jsonify }}
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const langToggle = document.getElementById('languageToggle');
+        const translationsScript = document.getElementById('page-translations');
+        
+        if (translationsScript) {
+            try {
+                const translations = JSON.parse(translationsScript.textContent);
+                const currentLang = '{{ page.lang }}';
+                
+                // Set initial state based on current language
+                if (currentLang === 'zh') {
+                    langToggle.classList.add('zh');
+                }
+
+                langToggle.addEventListener('click', function() {
+                    // Toggle visual state
+                    langToggle.classList.toggle('zh');
+                    
+                    // Find the translation for the other language
+                    const translation = translations.find(t => t.lang !== currentLang);
+                    
+                    if (translation) {
+                        // Navigate to the translated page
+                        window.location.href = translation.url;
+                    }
+                });
+            } catch (error) {
+                console.error('Error parsing translations:', error);
+            }
+        }
+    });
+</script>

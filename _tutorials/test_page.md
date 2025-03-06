@@ -1,14 +1,16 @@
 ---
 layout: post
-title: "TEST PAGE"
+title: Test Page
 date: 2025-03-04
 categories: ["C++ tutorials"]
 tags: ["C++", "test"]
 excerpt: "TEST"
 lang: en
-translations:
+translations: 
   - lang: zh
-    url: /tutorials/test_page_zh.html
+    url: /tutorials/test_page_zh/
+  - lang: en
+    url: /tutorials/test_page/
 ---
 
 ## Below is a test cpp file
@@ -32,3 +34,7 @@ int main() {
   <h1>测试页面</h1>
   <p>这里是中文内容...</p>
 </div>
+
+
+
+

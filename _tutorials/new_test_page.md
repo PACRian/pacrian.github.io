@@ -1,5 +1,34 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Check for saved language preference
+---
+layout: default
+title: Test Page
+date: 2025-03-04
+categories: ["C++ tutorials"]
+tags: ["C++", "test"]
+excerpt: "TEST"
+lang: en
+translations: 
+  - lang: zh
+    url: /tutorials/void_test_page/
+  - lang: en
+    url: /tutorials/new_test_page/
+---
+
+<!-- Inline script to ensure translations are available -->
+<script type="application/json" id="page-translations">
+{{ page.translations | jsonify }}
+</script>
+
+<!-- Language toggle button -->
+<button 
+  class="lang-toggle-btn" 
+  aria-label="Toggle Language">
+  {% if page.lang == 'en' %}中文{% else %}English{% endif %}
+</button>
+
+<!-- Language toggle script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Ensure we have the translations
   const translationsScript = document.getElementById('page-translations');
   
   if (translationsScript) {
@@ -29,3 +58,4 @@ document.addEventListener("DOMContentLoaded", function() {
     console.error('Translations script not found');
   }
 });
+</script>

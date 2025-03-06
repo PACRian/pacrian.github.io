@@ -38,6 +38,10 @@ kramdown:
       line_numbers: false
       start_line: 1
 
+# Multilingual support
+languages: ['en', 'zh']
+default_lang: 'en'
+exclude_from_localization: ['javascript', 'images', 'css']
 
 
 
