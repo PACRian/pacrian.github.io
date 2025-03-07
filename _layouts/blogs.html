@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Pacria's Site</title>
+    <link rel="stylesheet" href="/assets/css/blogs.css">
+</head>
+<body>
+    {% include navigation.html %}
+
+    <!-- Categories section -->
+    <div class="categories-section">
+    {% assign categories = site.tutorials | map: "categories" | flatten | uniq %}
+    {% for category in categories %}
+      <div class="category">
+          <div class="category-header" onclick="toggleCategory(this)">
+            {{ category }}
+          </div>
+          <div class="category-content">
+            <ul class="article-list">
+              {% assign category_posts = site.tutorials | where_exp: "post", "post.categories contains category" | sort: 'date' | reverse %}
+              {% for post in category_posts %}
+              <li class="article-item">
+                <a href="{{ post.url | relative_url }}" class="article-link">
+                  <span class="article-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                  <span class="article-title-text">{{ post.title }}</span>
+                </a>
+                {% if post.tags.size > 0 %}
+                <div class="article-tags">
+                  {% for tag in post.tags %}
+                  <span class="article-tag">{{ tag }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="blog-container">
+      <!-- Chronological blog posts section -->
+      <header class="blog-header">
+        <!-- <h1 class="blog-title">Blog</h1> -->
+      </header>
+
+    {% assign all_posts = site.tutorials | sort: 'date' | reverse %}
+    {% for post in all_posts limit:5 %}
+    <div class="post-entry">
+      <div class="post-date">{{ post.date | date: "%b %d, %Y" }}</div>
+      <h2 class="post-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h2>
+      <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+    </div>
+    {% endfor %}
+
+    <script>
+      function toggleCategory(element) {
+        const parentCategory = element.parentElement;
+        parentCategory.classList.toggle('active');
+      }
+      
+      // Open the first category by default
+      document.addEventListener('DOMContentLoaded', function() {
+        const firstCategory = document.querySelector('.category');
+        if (firstCategory) {
+          firstCategory.classList.add('active');
+        }
+      });
+    </script>
+    </div>
+</body>
+</html>
