@@ -1,4 +1,17 @@
-
+---
+layout: post
+title: Learning the attention mechanism in transformer
+date: 2025-03-07
+categories: ["Deep learning"]
+tags: ["Transformer", "Atention"]
+excerpt: "The basic transformer"
+lang: zh
+translations:
+  - lang: zh
+    url: /tutorials/test_page_zh/
+  - lang: en
+    url: /tutorials/test_page/
+---
 
 # The basic transformer
 
@@ -89,9 +102,24 @@ V=XW_V, \quad W_Q\in \mathbb R^{d_{model} \times d_v},K\in \mathbb R^{n \times d
 $$
  这样Attention pattern表就可以表为
 $$
-
+softmax(Q^TK)
 $$
 
+让我们稍微展开一下$Q^TK$以便读者理解，即：
+$$
+Q^TK=\begin{bmatrix}Q_0&Q_1&\ldots&Q_n\end{bmatrix}
+\begin{bmatrix}K_0^T\\K_1^T\\\vdots\\K_n^T\end{bmatrix}
+\\=
+\begin{bmatrix}Q_0&Q_1&\ldots&Q_n\end{bmatrix}
+$$
+那么，最终的输出图就是
+$$
+softmax(Q^TK)V
+$$
+不过为了保证Attention pattern表的数据分布不会过分偏离，通常对其各元素作除$\sqrt d_k$处理，再通过$softmax$运算，所以完整的输出图为：
+$$
+softmax\left(\frac{Q^TK}{\sqrt d_k}\right)V
+$$
 
 
 
