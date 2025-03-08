@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ '/assets/css/article-style.css' | relative_url }}">s
+  <meta name="page-language" content="{{ page.lang }}">
+  <link rel="stylesheet" href="{{ '/assets/css/article-style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/toc-styles.css' | relative_url }}">
   {% include head.html %}  <!-- 包含全局样式和meta -->
   
   <!-- MathJax Configuration -->
@@ -47,6 +49,7 @@
   </div>
 
   <div class="article-content">
+    {% include toc.html %}
     {{ content }}
   </div>
   {% include footer.html %} <!-- 包含脚本和页脚 -->

@@ -1,0 +1,416 @@
+<!-- Table of Contents -->
+<div class="toc-container" data-lang="{{ page.lang }}">
+<div class="toc-header">
+
+    <!-- <h3></h3> -->
+    <h3>{% if page.lang == 'zh' %}👆{% else %}👆TOP{% endif %}</h3>
+</div>
+<div id="toc" class="toc-content">
+    <!-- JavaScript will populate this -->
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const articleContent = document.querySelector('.article-content');
+    const toc = document.getElementById('toc');
+    
+    if (!articleContent || !toc) return;
+    
+    // Find all h1, h2, h3 headings
+    const headings = articleContent.querySelectorAll('h1, h2, h3');
+    
+    if (headings.length === 0) {
+    toc.innerHTML = '<p>{% if page.lang == "zh" %}本文未找到标题{% else %}No headings found in this article.{% endif %}</p>';
+    return;
+    }
+    
+    const tocList = document.createElement('ul');
+    
+    // Helper function to create a slug from heading text
+    function slugify(text) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+    }
+    
+    // Add IDs to headings if they don't have them
+    headings.forEach(function(heading) {
+    if (!heading.id) {
+        heading.id = slugify(heading.textContent);
+    }
+    });
+    
+    // Build the TOC
+    headings.forEach(function(heading) {
+    const listItem = document.createElement('li');
+    const link = document.createElement('a');
+    
+    link.href = '#' + heading.id;
+    link.textContent = heading.textContent;
+    link.classList.add('toc-' + heading.tagName.toLowerCase());
+    
+    listItem.appendChild(link);
+    tocList.appendChild(listItem);
+    });
+    
+    toc.appendChild(tocList);
+    
+    // Add scroll event to highlight current section
+    window.addEventListener('scroll', function() {
+    // Find which heading is currently visible
+    let currentHeading = null;
+    
+    headings.forEach(function(heading) {
+        const rect = heading.getBoundingClientRect();
+        
+        if (rect.top <= 100) { // Adjust this threshold as needed
+        currentHeading = heading;
+        }
+    });
+    
+    // Remove highlight from all TOC links
+    const tocLinks = toc.querySelectorAll('a');
+    tocLinks.forEach(function(link) {
+        link.style.fontWeight = 'normal';
+    });
+    
+    // Add highlight to current section
+    if (currentHeading) {
+        const currentLink = toc.querySelector(`a[href="#${currentHeading.id}"]`);
+        if (currentLink) {
+        currentLink.style.fontWeight = 'bold';
+        }
+    }
+    });
+});
+
+/*  collapse */
+document.addEventListener('DOMContentLoaded', function() {
+  // Get TOC elements
+  const tocContainer = document.querySelector('.toc-container');
+  const tocHeader = document.querySelector('.toc-header h3');
+  
+  // Detect page language - look for data attribute or check HTML lang
+  let pageLang = document.documentElement.getAttribute('data-lang') || 
+                 document.documentElement.lang || 
+                 'en';
+  
+  // If we can find a meta tag with page language, use that (higher priority)
+  const langMeta = document.querySelector('meta[name="page-language"]');
+  if (langMeta && langMeta.content) {
+    pageLang = langMeta.content;
+  }
+  
+  // Set appropriate text based on language
+  const menuText = pageLang === 'zh' ? '目录' : 'Menu';
+  
+  // Create a button to show TOC when it's hidden
+  const showTocButton = document.createElement('div');
+  showTocButton.className = 'show-toc-button';
+  showTocButton.innerHTML = menuText;
+  document.body.appendChild(showTocButton);
+  
+  // Initialize TOC state (open by default)
+  let tocHidden = false;
+  
+  // Check if we should restore a hidden state from localStorage
+  if (localStorage.getItem('tocHidden') === 'true') {
+    tocHidden = true;
+    tocContainer.classList.add('collapsed');
+    showTocButton.classList.add('visible');
+    document.body.classList.add('toc-hidden');
+  }
+  
+  // Toggle TOC visibility when header is clicked
+  tocHeader.addEventListener('click', function() {
+    toggleTocVisibility();
+  });
+  
+  // Show TOC when button is clicked
+  showTocButton.addEventListener('click', function() {
+    toggleTocVisibility();
+  });
+  
+  // Function to toggle TOC visibility
+  function toggleTocVisibility() {
+    tocHidden = !tocHidden;
+    
+    if (tocHidden) {
+      tocContainer.classList.add('collapsed');
+      showTocButton.classList.add('visible');
+      document.body.classList.add('toc-hidden');
+    } else {
+      tocContainer.classList.remove('collapsed');
+      showTocButton.classList.remove('visible');
+      document.body.classList.remove('toc-hidden');
+    }
+    
+    // Save state to localStorage
+    localStorage.setItem('tocHidden', tocHidden.toString());
+  }
+  
+  // Function to update active TOC item based on scroll position
+  function updateActiveTocItem() {
+    // Get all headings in the document
+    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
+      .filter(heading => heading.id); // Only include headings with IDs
+    
+    if (headings.length === 0) return;
+    
+    // Find the heading that's currently in view
+    const scrollPosition = window.scrollY + 100; // Add offset to detect earlier
+    
+    // Find the current heading by checking which one is at or above the scroll position
+    let currentHeadingIndex = -1;
+    for (let i = 0; i < headings.length; i++) {
+      if (headings[i].offsetTop <= scrollPosition) {
+        currentHeadingIndex = i;
+      } else {
+        break;
+      }
+    }
+    
+    // Remove active class from all TOC links
+    document.querySelectorAll('.toc-content a').forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    // If we found a heading, add active class to corresponding TOC item
+    if (currentHeadingIndex >= 0) {
+      const currentHeading = headings[currentHeadingIndex];
+      const headingId = currentHeading.id;
+      
+      // Find the corresponding TOC link
+      const tocLink = document.querySelector(`.toc-content a[href="#${headingId}"]`);
+      if (tocLink) {
+        tocLink.classList.add('active');
+      }
+    }
+  }
+  
+  // Update active item on scroll
+  window.addEventListener('scroll', updateActiveTocItem);
+  
+  // Initial update
+  updateActiveTocItem();
+  
+  // Smooth scroll for TOC links
+  document.querySelectorAll('.toc-content a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 20,
+          behavior: 'smooth'
+        });
+        
+        // Update URL without scrolling
+        history.pushState(null, null, `#${targetId}`);
+        
+        // On mobile or smaller viewports, hide TOC after clicking a link
+        if (window.innerWidth <= 768) {
+          toggleTocVisibility();
+        }
+      }
+    });
+  });
+  
+  // Language switcher support: update menu text if language changes
+  const langSwitchers = document.querySelectorAll('.language-switcher, [data-language-switcher]');
+  langSwitchers.forEach(switcher => {
+    switcher.addEventListener('click', function() {
+      // This assumes that clicking the language switcher will reload the page
+      // If it's an AJAX-based switch without reload, additional handling would be needed
+      const newLang = this.getAttribute('data-lang');
+      if (newLang) {
+        localStorage.setItem('tocLanguage', newLang);
+      }
+    });
+  });
+  
+  // Update display if templating handles language toggle without page reload
+  function updateMenuText(lang) {
+    const newText = lang === 'zh' ? '目录' : 'Menu';
+    tocHeader.textContent = newText;
+    showTocButton.textContent = newText;
+  }
+  
+  // Optional: expose this function globally to allow external language toggle systems to use it
+  window.updateTocLanguage = updateMenuText;
+});
+
+// TOC title complete
+document.addEventListener('DOMContentLoaded', function() {
+  // Get TOC elements
+  const tocContainer = document.querySelector('.toc-container');
+  const tocHeader = document.querySelector('.toc-header h3');
+  
+  // Detect page language - look for data attribute or check HTML lang
+  let pageLang = document.documentElement.getAttribute('data-lang') || 
+                 document.documentElement.lang || 
+                 'en';
+  
+  // If we can find a meta tag with page language, use that (higher priority)
+  const langMeta = document.querySelector('meta[name="page-language"]');
+  if (langMeta && langMeta.content) {
+    pageLang = langMeta.content;
+  }
+  
+  // Get page title from the main heading or document title
+  let pageTitle = '';
+  
+  // Try to find the main heading (h1) in the article content
+  const mainHeading = document.querySelector('.article-content h1, h1.article-title, .article-header h1, h1');
+  if (mainHeading && mainHeading.textContent) {
+    pageTitle = mainHeading.textContent.trim();
+  } else {
+    // Fall back to document title if no heading found
+    pageTitle = document.title.split('|')[0].trim(); // Get first part before pipe symbol if exists
+  }
+  
+  // Update the TOC header with the page title if available
+  if (pageTitle) {
+    tocHeader.textContent = pageTitle;
+  } else {
+    // Set fallback text based on language if no title found
+    tocHeader.textContent = pageLang === 'zh' ? '目录' : 'Menu';
+  }
+  
+  // Set menu text for show button based on language
+  const menuBtnText = pageLang === 'zh' ? '目录' : 'Menu';
+  
+  // Create a button to show TOC when it's hidden
+  const showTocButton = document.createElement('div');
+  showTocButton.className = 'show-toc-button';
+  showTocButton.innerHTML = menuBtnText;
+  document.body.appendChild(showTocButton);
+  
+  // Initialize TOC state (open by default)
+  let tocHidden = false;
+  
+  // Check if we should restore a hidden state from localStorage
+  if (localStorage.getItem('tocHidden') === 'true') {
+    tocHidden = true;
+    tocContainer.classList.add('collapsed');
+    showTocButton.classList.add('visible');
+    document.body.classList.add('toc-hidden');
+  }
+  
+  // Toggle TOC visibility when header is clicked
+  tocHeader.addEventListener('click', function() {
+    toggleTocVisibility();
+  });
+  
+  // Show TOC when button is clicked
+  showTocButton.addEventListener('click', function() {
+    toggleTocVisibility();
+  });
+  
+  // Function to toggle TOC visibility
+  function toggleTocVisibility() {
+    tocHidden = !tocHidden;
+    
+    if (tocHidden) {
+      tocContainer.classList.add('collapsed');
+      showTocButton.classList.add('visible');
+      document.body.classList.add('toc-hidden');
+    } else {
+      tocContainer.classList.remove('collapsed');
+      showTocButton.classList.remove('visible');
+      document.body.classList.remove('toc-hidden');
+    }
+    
+    // Save state to localStorage
+    localStorage.setItem('tocHidden', tocHidden.toString());
+  }
+  
+  // Function to update active TOC item based on scroll position
+  function updateActiveTocItem() {
+    // Get all headings in the document
+    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
+      .filter(heading => heading.id); // Only include headings with IDs
+    
+    if (headings.length === 0) return;
+    
+    // Find the heading that's currently in view
+    const scrollPosition = window.scrollY + 100; // Add offset to detect earlier
+    
+    // Find the current heading by checking which one is at or above the scroll position
+    let currentHeadingIndex = -1;
+    for (let i = 0; i < headings.length; i++) {
+      if (headings[i].offsetTop <= scrollPosition) {
+        currentHeadingIndex = i;
+      } else {
+        break;
+      }
+    }
+    
+    // Remove active class from all TOC links
+    document.querySelectorAll('.toc-content a').forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    // If we found a heading, add active class to corresponding TOC item
+    if (currentHeadingIndex >= 0) {
+      const currentHeading = headings[currentHeadingIndex];
+      const headingId = currentHeading.id;
+      
+      // Find the corresponding TOC link
+      const tocLink = document.querySelector(`.toc-content a[href="#${headingId}"]`);
+      if (tocLink) {
+        tocLink.classList.add('active');
+      }
+    }
+  }
+  
+  // Update active item on scroll
+  window.addEventListener('scroll', updateActiveTocItem);
+  
+  // Initial update
+  updateActiveTocItem();
+  
+  // Smooth scroll for TOC links
+  document.querySelectorAll('.toc-content a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 20,
+          behavior: 'smooth'
+        });
+        
+        // Update URL without scrolling
+        history.pushState(null, null, `#${targetId}`);
+        
+        // On mobile or smaller viewports, hide TOC after clicking a link
+        if (window.innerWidth <= 768) {
+          toggleTocVisibility();
+        }
+      }
+    });
+  });
+  
+  // Language switcher support
+  const langSwitchers = document.querySelectorAll('.language-switcher, [data-language-switcher]');
+  langSwitchers.forEach(switcher => {
+    switcher.addEventListener('click', function() {
+      const newLang = this.getAttribute('data-lang');
+      if (newLang) {
+        localStorage.setItem('tocLanguage', newLang);
+      }
+    });
+  });
+});
+</script>
