@@ -1,0 +1,42 @@
+/* MathJax Equation Styling */
+.MathJax {
+    font-size: 1em !important;
+    line-height: 1.5 !important;
+}
+
+/* Ensure LaTeX equations have proper spacing and readability */
+.mjx-math {
+    margin: 0 0.2em;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Inline math styling */
+mjx-container[inline] {
+    display: inline-block;
+}
+
+/* Display math styling */
+mjx-container[display="true"] {
+    display: block;
+    margin: 1em 0;
+    text-align: center;
+}
+
+/* Responsive adjustments for equations */
+@media (max-width: 768px) {
+    .mjx-math {
+        font-size: 0.9em !important;
+    }
+    
+    /* Ensure horizontal scrolling for wide equations on small screens */
+    .article-content mjx-container[display="true"] {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}
+
+/* Improve equation readability in dark mode or with specific background */
+.article-content mjx-container {
+    color: inherit;
+}
