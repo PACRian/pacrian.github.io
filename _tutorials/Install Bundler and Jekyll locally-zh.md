@@ -1,16 +1,17 @@
 ---
 layout: post
-title: "Install `Jekyll` locally for site development"
+title: "在本地部署 Jekyll"
 date: 2025-03-06
 categories: ["Web Development"]
 tags: ["Jekyll", "Installation"]
-excerpt: "Today we will install `Bundler` and `Jekyll` locally for site development."
+excerpt: "Jekyll —— 一个简单的静态网站生成器"
 lang: zh
+translations:
+    - lang: en
+      url: /tutorials/Install%20bundle%20and%20Jekyll%20locally/
+    - lang: zh
+      url: /tutorials/Install%20Bundler%20and%20Jekyll%20locally-zh/
 ---
-
-
-# Install `Bundler` and `Jekyll` locally
-
 
 
 ## 环境准备
