@@ -57,7 +57,7 @@ echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-## Official Installation
+## Install `Jekyll`
 
 Next, use `gem` to install `Bundler` and `Jekyll`:
 
