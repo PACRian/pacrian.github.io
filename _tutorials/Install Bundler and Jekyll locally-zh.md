@@ -2,7 +2,7 @@
 layout: post
 title: "在本地部署 Jekyll"
 date: 2025-03-06
-categories: ["Web Development"]
+categories: ["网络开发"]
 tags: ["Jekyll", "Installation"]
 excerpt: "Jekyll —— 一个简单的静态网站生成器"
 lang: zh
